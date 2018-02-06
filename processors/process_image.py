@@ -1,4 +1,5 @@
 import numpy as np
+import os, sys
 from keras.preprocessing.image import img_to_array, load_img
 
 def process_image(image, target_shape):
@@ -7,6 +8,8 @@ def process_image(image, target_shape):
     image input can be numpy array or path to image. If path given, we'll
     load it first.
     """
+    image_path = os.path.join('/Users/richardeverts/Desktop/exit-door/10fps/', image)
+
     if isinstance(image, str):
         h, w, _ = target_shape
         image_data = load_img(image_path, target_size=(h, w))

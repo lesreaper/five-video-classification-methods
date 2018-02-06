@@ -1,6 +1,7 @@
 """
 Base function for retrieving and compiling a model.
 """
+import models.lstm as lstm
 import models.c3d as c3d
 import models.vgg_rnn as vgg_rnn
 import models.conv3d as conv3d
@@ -24,11 +25,14 @@ def get_model(nb_classes, model_name, seq_length, optimizer,
     """
     # Only use top k if there's a need.
     metrics = ['accuracy']
+	print('nb_classes - base.py: ', nb_classes)
     if nb_classes >= 10:
         metrics.append('top_k_categorical_accuracy')
 		model == 'lstm':
 
-    if model_name == 'c3d':
+	if model_name == 'lstm':
+        model = lstm.model(nb_classes, (seq_length, *input_shapes[0]))
+    elif model_name == 'c3d':
         model = c3d.model(nb_classes, (seq_length, *input_shapes[0]))
     elif model_name == 'vgg_rnn':
         model = vgg_rnn.model(nb_classes, (seq_length, *input_shapes[0]))
@@ -39,6 +43,7 @@ def get_model(nb_classes, model_name, seq_length, optimizer,
     else:
         raise ValueError("Unknown network name.")
 
+	print('optimizer - base.py: ', optimizer)
     if optimizer == 'adam':
         optimizer = Adam(lr=learning_rate)
     elif optimizer == 'sgd':

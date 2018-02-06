@@ -1,5 +1,13 @@
 config = {
     'models': {
+		'lstm': {
+			'paths': [
+				{
+					'preprocessing': 'images',
+					'input_shape': (80, 80, 3),
+				},
+			],
+		},
         'c3d': {
             'paths': [
                 {

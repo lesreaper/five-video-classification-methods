@@ -1,7 +1,7 @@
 config = {
     'datasets': {
         'ucf101': {
-            'nb_classes': 101,
+            'nb_classes': 103,
         },
         'synthetic_boxes': {
             'nb_classes': 5,

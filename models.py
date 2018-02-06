@@ -44,7 +44,7 @@ class ResearchModels():
             self.model = load_model(self.saved_model)
         elif model == 'lstm':
             print("Loading LSTM model.")
-            self.input_shape = (seq_length, features_length)
+            self.input_shape = (50, features_length)
             self.model = self.lstm()
         elif model == 'lrcn':
             print("Loading CNN-LSTM model.")
@@ -124,7 +124,7 @@ class ResearchModels():
         model.add(TimeDistributed(Conv2D(256, (3,3),
             padding='same', activation='relu')))
         model.add(TimeDistributed(MaxPooling2D((2, 2), strides=(2, 2))))
-        
+
         model.add(TimeDistributed(Conv2D(512, (3,3),
             padding='same', activation='relu')))
         model.add(TimeDistributed(Conv2D(512, (3,3),
