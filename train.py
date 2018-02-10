@@ -5,6 +5,8 @@ from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogg
 from models import ResearchModels
 from data import DataSet
 import time
+import numpy as np
+import matplotlib.pyplot as plt
 import os.path
 
 def train(data_type, seq_length, model, saved_model=None,
@@ -77,8 +79,20 @@ def train(data_type, seq_length, model, saved_model=None,
             verbose=1,
             callbacks=[tb, early_stopper, csv_logger, checkpointer],
             validation_data=val_generator,
-            validation_steps=40,
+            validation_steps=50,
             workers=4)
+
+    # plt.style.use("ggplot")
+    # plt.figure()
+    # plt.plot(np.arange(0,100), rm.history["loss"], label="train_loss")
+    # plt.plot(np.arange(0,100), rm.history["val_loss"], label="val_loss")
+    # plt.plot(np.arange(0,100), rm.history["acc"], label="train_acc")
+    # plt.plot(np.arange(0,100), rm.history["val_acc"], label="val_acc")
+    # plt.title("Training Loss and Accuracy")
+    # plt.xlabel("Epoch #")
+    # plt.ylabel("Loss/Accuracy")
+    # plt.legend()
+    # plt.show()
 
 def main():
     """These are the main training settings. Set each before running
@@ -87,7 +101,7 @@ def main():
     model = 'lstm'
     saved_model = None  # None or weights file
     class_limit = None  # int, can be 1-101 or None
-    seq_length = 40
+    seq_length = 50
     load_to_memory = False  # pre-load the sequences into memory
     batch_size = 32
     nb_epoch = 1000

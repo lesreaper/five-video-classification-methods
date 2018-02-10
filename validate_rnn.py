@@ -6,7 +6,7 @@ from keras.callbacks import TensorBoard, ModelCheckpoint, CSVLogger
 from models import ResearchModels
 from data import DataSet
 
-def validate(data_type, model, seq_length=40, saved_model=None,
+def validate(data_type, model, seq_length=50, saved_model=None,
              class_limit=None, image_shape=None):
     batch_size = 32
 

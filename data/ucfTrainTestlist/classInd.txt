@@ -99,3 +99,5 @@
 99 WallPushups
 100 WritingOnBoard
 101 YoYo
+102 ExitDoor
+103 WalkingPast

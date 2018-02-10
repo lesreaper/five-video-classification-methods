@@ -8,6 +8,7 @@ from keras.optimizers import Adam, RMSprop
 from keras.layers.wrappers import TimeDistributed
 from keras.layers.convolutional import (Conv2D, MaxPooling3D, Conv3D,
     MaxPooling2D)
+from keras.layers.advanced_activations import LeakyReLU
 from collections import deque
 import sys
 
@@ -82,6 +83,7 @@ class ResearchModels():
                        input_shape=self.input_shape,
                        dropout=0.5))
         model.add(Dense(512, activation='relu'))
+        model.add(Dense(512, activation='relu'))
         model.add(Dropout(0.5))
         model.add(Dense(self.nb_classes, activation='softmax'))
 
@@ -124,7 +126,7 @@ class ResearchModels():
         model.add(TimeDistributed(Conv2D(256, (3,3),
             padding='same', activation='relu')))
         model.add(TimeDistributed(MaxPooling2D((2, 2), strides=(2, 2))))
-        
+
         model.add(TimeDistributed(Conv2D(512, (3,3),
             padding='same', activation='relu')))
         model.add(TimeDistributed(Conv2D(512, (3,3),
